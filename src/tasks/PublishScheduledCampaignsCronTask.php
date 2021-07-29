@@ -50,6 +50,8 @@ class PublishScheduledCampaignsCronTask implements CronTask
             return;
         }
 
+        $error = false;
+
         foreach ($campaigns as $campaign) {
             try {
                 $published =  $campaign->publish();
@@ -59,15 +61,17 @@ class PublishScheduledCampaignsCronTask implements CronTask
                         $campaign->notifyWatchers();
                     } catch (\Exception $e) {
                         $error = new \Error(sprintf('Cron could not notify watchers after campaign %s (%s) was published [%s]', $campaign->Name, $campaign->ID, $e->getMessage()));
-                        $this->logger->error($error->getMessage(), ['exception' => $error]);
                     }
                 } else {
                     $error = new \Error(sprintf('Cron cannot published campaign %s (%s)', $campaign->Name, $campaign->ID));
-                    $this->logger->error($error->getMessage(), ['exception' => $error]);
                 }
             } catch (\Exception $e) {
-                $this->logger->error($e->getMessage(), ['exception' => $e]);
+                $error = $e;
             }
+        }
+
+        if ($error !== false) {
+            $this->logger->error($error->getMessage(), ['exception' => $error]);
         }
     }
 }

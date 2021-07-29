@@ -93,8 +93,8 @@ class ChangeSetSchedulingExtension extends DataExtension
     public function getScheduleDate()
     {
         $date = $this->owner->dbObject('ScheduledPublishDateTime');
-        if ($date) {
-            return $this->owner->dbObject('ScheduledPublishDateTime')->Nice();
+        if ($date && $date->getTimestamp()) {
+            return $date->Nice();
         }
 
         return '-';
