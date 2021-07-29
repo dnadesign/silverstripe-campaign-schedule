@@ -8,9 +8,15 @@
       "email": "alexandre.saelens@dna.co.nz"
   }],
   "require": {
-      "silverstripe/campaign-admin": "^1",
+      "silverstripe/campaign-admin": "dev-hooks",
       "silverstripe/crontask": "^2"
   },
+  "repositories": [
+    {
+        "type": "vcs",
+        "url": "git@github.com:dnadesign/silverstripe-campaign-admin.git"
+    }
+  ],
   "minimum-stability": "dev",
   "prefer-stable": true
 }
