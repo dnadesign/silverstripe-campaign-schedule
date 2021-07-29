@@ -33,12 +33,10 @@ So to install, you need to require the modules via vcs.
 
 ```
 
-## Requirements/Dependencies
+## Requirements
 - SilverStripe ^4
 - [silverstripe/campaign-admin](https://github.com/silverstripe/silverstripe-campaign-admin)
 - [silverstripe/cron-task](https://github.com/silverstripe/silverstripe-crontask)
-
-This module currently relies on a fork of silverstripe/campaign-admin which adds a hook in the CmapaignAdmin controller.
 
 ## Set up
 Make sure to add the [server configuration](https://github.com/silverstripe/silverstripe-crontask#server-configuration) for the cron task module.
