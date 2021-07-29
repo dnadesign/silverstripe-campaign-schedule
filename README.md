@@ -18,7 +18,7 @@ So to install, you need to require the modules via vcs.
 ```
 "require": {}
     "silverstripe/campaign-admin": "dev-hooks as 1.8.0",
-    "dnadesign/silverstripe-campaign-schedule": "^1",
+    "dnadesign/silverstripe-campaign-schedule": "dev-master",
 },
 "repositories": [
     {
