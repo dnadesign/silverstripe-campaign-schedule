@@ -1,0 +1,11 @@
+---
+Name: silverstripe-campaign-schedule
+---
+
+SilverStripe\Versioned\ChangeSet:
+  extensions:
+    scheduling: DNADesign\CampaignSchedule\Extensions\ChangeSetSchedulingExtension
+
+SilverStripe\CampaignAdmin\CampaignAdmin:
+  extensions:
+    scheduling: DNADesign\CampaignSchedule\Extensions\CampaignAdminSchedulingExtension

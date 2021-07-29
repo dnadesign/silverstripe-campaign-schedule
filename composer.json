@@ -1,0 +1,16 @@
+{
+  "name": "dnadesign/silverstripe-campaign-schedule",
+  "description": "SilverStripe campaign scheduling interface",
+  "type": "silverstripe-vendormodule",
+  "license": "BSD-3-Clause",
+  "authors": [{
+      "name": "Alexandre Saelens",
+      "email": "alexandre.saelens@dna.co.nz"
+  }],
+  "require": {
+      "silverstripe/campaign-admin": "^1",
+      "silverstripe/crontask": "^2"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
