@@ -13,7 +13,7 @@ class CampaignAdminSchedulingExtension extends Extension
      * @param ChangeSet $changeSet
      * @return void
      */
-    public function updateChangeSetResources(&$resources, $changeSet)
+    public function updateChangeSetResource(&$resources, $changeSet)
     {
         $resources['ScheduledPublishDateTime'] = $changeSet->getScheduleDate();
     }
