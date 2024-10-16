@@ -13,7 +13,8 @@
     "php": "^8.3",
     "silverstripe/campaign-admin": "^2.0",
     "silverstripe/crontask": "^3.0",
-    "silverstripe/framework": "^5.0"
+    "silverstripe/framework": "^5.0",
+    "silverstripe/versioned": "^2.0"
   },
   "require-dev": {
     "cambis/silverstripe-rector": "^0.7",

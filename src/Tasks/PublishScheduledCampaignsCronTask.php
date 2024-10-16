@@ -2,6 +2,8 @@
 
 namespace DNADesign\CampaignSchedule\Tasks;
 
+use Exception;
+use Error;
 use Psr\Log\LoggerInterface;
 use SilverStripe\CronTask\Interfaces\CronTask;
 use SilverStripe\ORM\FieldType\DBDatetime;
@@ -9,15 +11,13 @@ use SilverStripe\Versioned\ChangeSet;
 
 class PublishScheduledCampaignsCronTask implements CronTask
 {
-    private static $dependencies = [
+    private LoggerInterface $logger;
+
+    private static array $dependencies = [
         'Logger' => '%$' . LoggerInterface::class,
     ];
-    
-    /**
-     * @param LoggerInterface $logger
-     * @return $this
-     */
-    public function setLogger(LoggerInterface $logger)
+
+    public function setLogger(LoggerInterface $logger): static
     {
         $this->logger = $logger;
         return $this;
@@ -35,10 +35,8 @@ class PublishScheduledCampaignsCronTask implements CronTask
 
     /**
      * Find the change sets that have been scheduled and publish them
-     *
-     * @return void
      */
-    public function process()
+    public function process(): void
     {
         $campaigns = ChangeSet::get()->filter([
             'State' => ChangeSet::STATE_OPEN,
@@ -59,13 +57,13 @@ class PublishScheduledCampaignsCronTask implements CronTask
                     $this->logger->info(sprintf('Cron published campaign %s (%s)', $campaign->Name, $campaign->ID));
                     try {
                         $campaign->notifyWatchers();
-                    } catch (\Exception $e) {
-                        $error = new \Error(sprintf('Cron could not notify watchers after campaign %s (%s) was published [%s]', $campaign->Name, $campaign->ID, $e->getMessage()));
+                    } catch (Exception $e) {
+                        $error = new Error(sprintf('Cron could not notify watchers after campaign %s (%s) was published [%s]', $campaign->Name, $campaign->ID, $e->getMessage()));
                     }
                 } else {
-                    $error = new \Error(sprintf('Cron cannot published campaign %s (%s)', $campaign->Name, $campaign->ID));
+                    $error = new Error(sprintf('Cron cannot published campaign %s (%s)', $campaign->Name, $campaign->ID));
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $error = $e;
             }
         }
