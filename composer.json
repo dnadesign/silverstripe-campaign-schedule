@@ -8,8 +8,10 @@
       "email": "alexandre.saelens@dna.co.nz"
   }],
   "require": {
-      "silverstripe/campaign-admin": ">=1.9.0",
-      "silverstripe/crontask": "^2"
+    "php": "^8.3",
+    "silverstripe/campaign-admin": "^2.0",
+    "silverstripe/crontask": "^3.0",
+    "silverstripe/framework": "^5.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
@@ -17,7 +19,8 @@
     "allow-plugins": {
       "composer/installers": true,
       "silverstripe/vendor-plugin": true
-    }
+    },
+    "sort-packages": true
   },
   "autoload": {
     "psr-4": {
