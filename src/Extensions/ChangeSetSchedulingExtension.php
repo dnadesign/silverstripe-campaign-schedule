@@ -3,13 +3,13 @@
 namespace DNADesign\CampaignSchedule\Extensions;
 
 use Exception;
-use SilverStripe\Core\Extension;
-use SilverStripe\ORM\ManyManyList;
 use SilverStripe\Control\Email\Email;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\DatetimeField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\ReadonlyField;
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\Security\Member;
 use SilverStripe\Versioned\ChangeSet;
 
@@ -22,11 +22,11 @@ use SilverStripe\Versioned\ChangeSet;
 class ChangeSetSchedulingExtension extends Extension
 {
     private static array $db = [
-        'ScheduledPublishDateTime' => 'Datetime'
+        'ScheduledPublishDateTime' => 'Datetime',
     ];
 
     private static array $many_many = [
-        'Watchers' => Member::class
+        'Watchers' => Member::class,
     ];
 
     /**
@@ -46,7 +46,7 @@ class ChangeSetSchedulingExtension extends Extension
         if ($this->getOwner()->IsInDB() && $this->getOwner()->getIsScheduled() && !$this->getOwner()->IsPublished()) {
             $state = $fields->dataFieldByName('State');
             if ($state) {
-                $state->setDescription('Scheduled to be automatically published on '.$this->getScheduleDate());
+                $state->setDescription('Scheduled to be automatically published on ' . $this->getScheduleDate());
             }
         }
 
@@ -75,7 +75,7 @@ class ChangeSetSchedulingExtension extends Extension
                     'PublisherCustomName',
                     $this->getOwner()->fieldLabel('PublisherName'),
                     'Cron'
-                )
+                ),
             ]);
         }
     }

@@ -2,8 +2,8 @@
 
 namespace DNADesign\CampaignSchedule\Tasks;
 
-use Exception;
 use Error;
+use Exception;
 use Psr\Log\LoggerInterface;
 use SilverStripe\CronTask\Interfaces\CronTask;
 use SilverStripe\ORM\FieldType\DBDatetime;
@@ -30,7 +30,7 @@ class PublishScheduledCampaignsCronTask implements CronTask
      */
     public function getSchedule()
     {
-        return "*/1 * * * *";
+        return '*/1 * * * *';
     }
 
     /**
@@ -40,7 +40,7 @@ class PublishScheduledCampaignsCronTask implements CronTask
     {
         $campaigns = ChangeSet::get()->filter([
             'State' => ChangeSet::STATE_OPEN,
-            'ScheduledPublishDateTime:LessThanOrEqual' => DBDatetime::now()->format(DBDatetime::ISO_DATETIME)
+            'ScheduledPublishDateTime:LessThanOrEqual' => DBDatetime::now()->format(DBDatetime::ISO_DATETIME),
         ]);
 
         if ($campaigns->count() == 0) {
@@ -52,7 +52,7 @@ class PublishScheduledCampaignsCronTask implements CronTask
 
         foreach ($campaigns as $campaign) {
             try {
-                $published =  $campaign->publish();
+                $published = $campaign->publish();
                 if ($published) {
                     $this->logger->info(sprintf('Cron published campaign %s (%s)', $campaign->Name, $campaign->ID));
                     try {
@@ -69,7 +69,9 @@ class PublishScheduledCampaignsCronTask implements CronTask
         }
 
         if ($error !== false) {
-            $this->logger->error($error->getMessage(), ['exception' => $error]);
+            $this->logger->error($error->getMessage(), [
+                'exception' => $error,
+            ]);
         }
     }
 }
