@@ -1,6 +1,6 @@
 <?php
 
-namespace Hud\Tasks;
+namespace DNADesign\CampaignSchedule\Tasks;
 
 use Psr\Log\LoggerInterface;
 use SilverStripe\CronTask\Interfaces\CronTask;

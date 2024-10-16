@@ -11,12 +11,17 @@
       "silverstripe/campaign-admin": ">=1.9.0",
       "silverstripe/crontask": "^2"
   },
-  "repositories": [
-    {
-        "type": "vcs",
-        "url": "git@github.com:dnadesign/silverstripe-campaign-admin.git"
-    }
-  ],
   "minimum-stability": "dev",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true,
+      "silverstripe/vendor-plugin": true
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "DNADesign\\CampaignSchedule\\": "src"
+    }
+  }
 }
