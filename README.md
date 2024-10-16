@@ -7,7 +7,7 @@ This module allows to schedule a campaign ([silverstripe/campaign-admin](https:/
 ## Installation
 
 ```
-composer require dnadesign/silverstripe-campaign-schedule ^1
+composer require dnadesign/silverstripe-campaign-schedule:^2
 ```
 
 ### Alternative Installation
@@ -27,7 +27,7 @@ This module is not on Packagist yet, so to install, you need to require the modu
 ```
 
 ## Requirements
-- SilverStripe ^4
+- silverstripe/framework:^5.0
 - [silverstripe/campaign-admin](https://github.com/silverstripe/silverstripe-campaign-admin)
 - [silverstripe/cron-task](https://github.com/silverstripe/silverstripe-crontask)
 
