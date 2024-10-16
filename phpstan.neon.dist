@@ -1,0 +1,36 @@
+parameters:
+  level: 9
+  paths:
+    - _config.php
+    - src
+  excludePaths:
+    - ecs.php
+    - rector.php
+  universalObjectCratesClasses:
+    - SilverStripe\View\ViewableData
+  ignoreErrors:
+    -
+      # Ignore configuration properties
+      message: '#Static property [a-zA-Z0-9\\$\\_\\\\:\\(\\)]+ is never read, only written#'
+      identifier: property.onlyWritten
+      reportUnmatched: false
+    -
+      # Ignore iterable typed array properties https://github.com/phpstan/phpstan/discussions/7287
+      message: "#Property [a-zA-Z0-9\\$\\_\\\\:\\(\\)]+ type has no value type specified in iterable type array#"
+      identifier: missingType.iterableValue
+      reportUnmatched: false
+    -
+      # Although (SilverStripe\Core\Extension&Silverstripe\Core\Extensible) is technically correct, PHPStan isn't aware of this and thinks that these classes will never intersect
+      message: "#^Return type of call to method SilverStripe\\\\Core\\\\Extension\\<\\*NEVER\\*\\>\\:\\:getOwner\\(\\) contains unresolvable type\\.$#"
+      identifier: method.unresolvableReturnType
+      reportUnmatched: false
+    -
+      # Added via extension
+      message: "#^Call to an undefined method SilverStripe\\\\Versioned\\\\ChangeSet\\:\\:getScheduleDate\\(\\)\\.$#"
+      identifier: method.notFound
+      path: src/Extensions/CampaignAdminSchedulingExtension.php
+    -
+      # Added via extension
+      message: "#^Call to an undefined method SilverStripe\\\\Versioned\\\\ChangeSet\\:\\:notifyWatchers\\(\\)\\.$#"
+      identifier: method.notFound
+      path: src/Tasks/PublishScheduledCampaignsCronTask.php

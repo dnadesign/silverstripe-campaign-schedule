@@ -13,6 +13,8 @@ class CampaignAdminSchedulingExtension extends Extension
 {
     /**
      * Add the Schedule date time to the GridField
+     *
+     * @param mixed[] $resources
      */
     protected function updateChangeSetResource(array &$resources, ChangeSet $changeSet): void
     {

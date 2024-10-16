@@ -82,6 +82,8 @@ class ChangeSetSchedulingExtension extends Extension
 
     /**
      * Add schedule date to the summary fields
+     *
+     * @param string[] $fields
      */
     protected function updateSummaryFields(array &$fields): void
     {
@@ -91,7 +93,7 @@ class ChangeSetSchedulingExtension extends Extension
     /**
      * Used to display the scheduled date in the grid field
      */
-    private function getScheduleDate(): string
+    public function getScheduleDate(): string
     {
         $date = $this->getOwner()->dbObject('ScheduledPublishDateTime');
         if ($date && $date->getTimestamp()) {
@@ -139,10 +141,10 @@ class ChangeSetSchedulingExtension extends Extension
                 $email->setBody(sprintf('Campaign %s (%s) has been published automatically as per schedule.', $this->getOwner()->Name, $this->getOwner()->ID));
                 $email->setTo(array_shift($addresses));
                 foreach ($addresses as $address) {
-                    $email->setCC($email);
+                    $email->setCC($address);
                 }
 
-                return $email->send();
+                $email->send();
             }
         }
 
